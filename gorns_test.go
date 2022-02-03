@@ -18,7 +18,7 @@ func Test_UWarn(t *testing.T) {
 	}
 }
 
-func Test_Warnf(t *testing.T) {
+func Test_Swarnf(t *testing.T) {
 	expected := "84"
 
 	var x *UWarn = &UWarn{
@@ -27,7 +27,7 @@ func Test_Warnf(t *testing.T) {
 		Content: "test",
 	}
 
-	got := x.Warnf("%d", x.Code)
+	got := x.Swarnf("%d", x.Code)
 
 	if expected != got {
 		t.Errorf("Expected: %s, got: %s", expected, got)
