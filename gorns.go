@@ -22,7 +22,7 @@ type UWarn struct {
 // This should be used to contain warning information.
 type Warn interface {
 	// Warn type as string
-	Warnf() string
+	Swarnf() string
 }
 
 // Formats an element of type UWarn and returns a string.
