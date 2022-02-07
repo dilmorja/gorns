@@ -99,3 +99,16 @@ func (s *storage) Delete(name string) bool {
 	}
 	return false
 }
+
+func (s *storage) Update(name string, new *gorns.UWarn) bool {
+	s.mutex.RLock()
+	if _, ok := s.warns[name]; ok {
+		s.mutex.RUnlock()
+		s.mutex.Lock()
+		s.warns[name] = new
+		s.mutex.Unlock()
+		return true
+	}
+	s.mutex.RUnlock()
+	return false
+}

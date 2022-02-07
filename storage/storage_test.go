@@ -117,3 +117,33 @@ func Tets_Delete(t *testing.T) {
 		t.Errorf("Expected: %d, got: %d", expected, got)
 	}
 }
+
+func Test_Updates(t *testing.T) {
+	expected := "UPDATED_TEST"
+
+	storage := NewStorage(&StorageConfig{
+		Limit: int16(6),
+	})
+
+	if warn := storage.Push(&gorns.UWarn{
+		Name:    "TEST",
+		Code:    utils.Code("TEST"),
+		Content: "test",
+	}); warn != nil {
+		t.Errorf("warn: %v", warn)
+	}
+
+	if ok := storage.Update("TEST", &gorns.UWarn{
+		Name:    "UPDATED_TEST",
+		Code: 	 utils.Code("UPDATED_TEST"),
+		Content: "A updated test",
+	}); !ok {
+		t.Errorf("ok: %v", ok)
+	}
+
+	got := storage.warns["TEST"].Name
+
+	if expected != got {
+		t.Errorf("Expected: %s, got: %s", expected, got)
+	}
+}
