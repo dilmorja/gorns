@@ -94,7 +94,7 @@ func Test_PushLimit(t *testing.T) {
 	}
 }
 
-func Tets_Delete(t *testing.T) {
+func Test_Delete(t *testing.T) {
 	expected := 0
 
 	storage := NewStorage(&StorageConfig{
@@ -118,7 +118,7 @@ func Tets_Delete(t *testing.T) {
 	}
 }
 
-func Test_Updates(t *testing.T) {
+func Test_Update(t *testing.T) {
 	expected := "UPDATED_TEST"
 
 	storage := NewStorage(&StorageConfig{
