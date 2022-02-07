@@ -5,6 +5,7 @@ import (
 	"testing"
 
 	"github.com/pszao/gorns"
+	"github.com/pszao/gorns/utils"
 )
 
 func Test_Storage(t *testing.T) {
@@ -90,5 +91,29 @@ func Test_PushLimit(t *testing.T) {
 
 	if got != nil {
 		t.Errorf("Expected: %v, got: %v", nil, got)
+	}
+}
+
+func Tets_Delete(t *testing.T) {
+	expected := 0
+
+	storage := NewStorage(&StorageConfig{
+		Limit: int16(6),
+	})
+
+	warn := storage.Push(&gorns.UWarn{
+		Name:    "TEST",
+		Code:    utils.Code("TEST"),
+		Content: "test",
+	})
+
+	if warn != nil {
+		t.Errorf("warn: %v", warn)
+	}
+
+	got := len(storage.warns)
+
+	if expected != got {
+		t.Errorf("Expected: %d, got: %d", expected, got)
 	}
 }

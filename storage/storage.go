@@ -83,3 +83,19 @@ func (s *storage) Get(name string) *gorns.UWarn {
 	s.mutex.RUnlock()
 	return nil
 }
+
+// Removes a warning from storage and returns true if the operation was successful.
+//		// ...
+//		storage.Delete("TEST")
+//		// ...
+func (s *storage) Delete(name string) bool {
+	s.mutex.RLock()
+	if _, ok := s.warns[name]; ok {
+		s.mutex.RUnlock()
+		s.mutex.Lock()
+		delete(s.warns, name)
+		s.mutex.Unlock()
+		return true
+	}
+	return false
+}
