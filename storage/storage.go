@@ -100,6 +100,7 @@ func (s *storage) Delete(name string) bool {
 	return false
 }
 
+// If the warning exists, it replaces its old values with the new ones.
 func (s *storage) Update(name string, new *gorns.UWarn) bool {
 	s.mutex.RLock()
 	if _, ok := s.warns[name]; ok {
