@@ -3,7 +3,7 @@ package storage
 import (
 	"sync"
 
-	"github.com/pszao/gorns"
+	"github.com/hexacry/gorns"
 )
 
 // This structure is private to prevent inappropriate or unwanted use.

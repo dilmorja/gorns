@@ -3,7 +3,7 @@ package utils
 import (
 	"testing"
 
-	"github.com/pszao/gorns"
+	"github.com/hexacry/gorns"
 )
 
 func Test_CharCodeAt(t *testing.T) {

@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/pszao/gorns"
-	"github.com/pszao/gorns/utils"
+	"github.com/hexacry/gorns"
+	"github.com/hexacry/gorns/utils"
 )
 
 func Test_Storage(t *testing.T) {
