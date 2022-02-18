@@ -93,6 +93,7 @@ func (s *storage) Delete(name string) bool {
 		s.mutex.Unlock()
 		return true
 	}
+	s.mutex.RUnlock()
 	return false
 }
 
