@@ -110,6 +110,11 @@ func Test_Delete(t *testing.T) {
 		t.Errorf("warn: %v", warn)
 	}
 
+	deleted := storage.Delete("TEST")
+	if !deleted {
+		t.Errorf("\nTEST not deleted\n")
+	}
+
 	got := len(storage.warns)
 
 	if expected != got {
