@@ -34,3 +34,33 @@ func (uw *UWarn) Swarnf(format string, v ...interface{}) string {
 
 	return fmt.Sprintf("%s (%d): %s", uw.Name, uw.Code, uw.Content)
 }
+
+
+type Warner struct {
+	Storage Storage
+	Cfg *WarnerOpts
+}
+
+type WarnerOpts struct {
+	StorageLimit int16
+}
+
+func New(opts ...*WarnerOpts) *Warner {
+	var this *Warner = new(Warner)
+
+	if len(opts) > 0 {
+		this.Cfg = opts[0]
+	}
+
+	if this.Cfg == nil {
+		this.Cfg = &WarnerOpts{
+			StorageLimit: int16(8),
+		}
+	}
+
+	this.Storage = NewStorage(&StorageConfig{
+		Limit: this.Cfg.StorageLimit,
+	})
+
+	return this
+}

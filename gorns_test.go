@@ -33,3 +33,15 @@ func Test_Swarnf(t *testing.T) {
 		t.Errorf("Expected: %s, got: %s", expected, got)
 	}
 }
+
+func Test_New(t *testing.T) {
+	expected := int16(8)
+
+	instance := New()
+
+	got := instance.Cfg.StorageLimit
+
+	if expected != got {
+		t.Errorf("\nExpected: %d\nGot: %d\n", expected, got)
+	}
+}
