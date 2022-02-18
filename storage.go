@@ -1,14 +1,10 @@
-package storage
+package gorns
 
-import (
-	"sync"
-
-	"github.com/hexacry/gorns"
-)
+import "sync"
 
 // This structure is private to prevent inappropriate or unwanted use.
 type storage struct {
-	warns map[string]*gorns.UWarn
+	warns map[string]*UWarn
 	mutex sync.RWMutex
 	limit int16
 }
@@ -38,7 +34,7 @@ func NewStorage(sc *StorageConfig) Storage {
 
 	this := new(storage)
 	this.limit = sc.Limit
-	this.warns = make(map[string]*gorns.UWarn)
+	this.warns = make(map[string]*UWarn)
 	this.mutex = sync.RWMutex{}
 
 	return Storage{
@@ -58,7 +54,7 @@ func NewStorage(sc *StorageConfig) Storage {
 //			Content: "Hi! This is a example. :D",
 //		})
 //		// ...
-func (s *storage) Push(warn *gorns.UWarn) *gorns.UWarn {
+func (s *storage) Push(warn *UWarn) *UWarn {
 	if w := s.Get(warn.Name); w != nil {
 		return w
 	}
@@ -74,7 +70,7 @@ func (s *storage) Push(warn *gorns.UWarn) *gorns.UWarn {
 //		// ...
 //		getWarn := storage.Get("EXAMPLE")
 //		// ...
-func (s *storage) Get(name string) *gorns.UWarn {
+func (s *storage) Get(name string) *UWarn {
 	s.mutex.RLock()
 	if w, ok := s.warns[name]; ok {
 		s.mutex.RUnlock()
@@ -101,7 +97,7 @@ func (s *storage) Delete(name string) bool {
 }
 
 // If the warning exists, it replaces its old values with the new ones.
-func (s *storage) Update(name string, new *gorns.UWarn) bool {
+func (s *storage) Update(name string, new *UWarn) bool {
 	s.mutex.RLock()
 	if _, ok := s.warns[name]; ok {
 		s.mutex.RUnlock()

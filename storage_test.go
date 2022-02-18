@@ -1,15 +1,14 @@
-package storage
+package gorns
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/hexacry/gorns"
 	"github.com/hexacry/gorns/utils"
 )
 
 func Test_Storage(t *testing.T) {
-	expected := "*storage.Storage"
+	expected := "*gorns.Storage"
 
 	st := new(Storage)
 
@@ -27,7 +26,7 @@ func Test_Push(t *testing.T) {
 		Limit: int16(6),
 	})
 
-	se.Push(&gorns.UWarn{
+	se.Push(&UWarn{
 		Name:    "TEST",
 		Code:    uint16(84),
 		Content: "test",
@@ -48,13 +47,13 @@ func Test_Push_Same(t *testing.T) {
 		Limit: int16(6),
 	})
 
-	_ = se.Push(&gorns.UWarn{
+	_ = se.Push(&UWarn{
 		Name:    "TEST",
 		Code:    uint16(84),
 		Content: "test",
 	})
 
-	warn := se.Push(&gorns.UWarn{
+	warn := se.Push(&UWarn{
 		Name:    "TEST",
 		Code:    uint16(84),
 		Content: "test",
@@ -77,13 +76,13 @@ func Test_PushLimit(t *testing.T) {
 		Limit: int16(1),
 	})
 
-	se.Push(&gorns.UWarn{
+	se.Push(&UWarn{
 		Name:    "TEST",
 		Code:    uint16(84),
 		Content: "test",
 	})
 
-	got := se.Push(&gorns.UWarn{
+	got := se.Push(&UWarn{
 		Name:    "TEST_TWO",
 		Code:    uint16(168),
 		Content: "test",
@@ -101,7 +100,7 @@ func Test_Delete(t *testing.T) {
 		Limit: int16(6),
 	})
 
-	warn := storage.Push(&gorns.UWarn{
+	warn := storage.Push(&UWarn{
 		Name:    "TEST",
 		Code:    utils.Code("TEST"),
 		Content: "test",
@@ -125,7 +124,7 @@ func Test_Update(t *testing.T) {
 		Limit: int16(6),
 	})
 
-	if warn := storage.Push(&gorns.UWarn{
+	if warn := storage.Push(&UWarn{
 		Name:    "TEST",
 		Code:    utils.Code("TEST"),
 		Content: "test",
@@ -133,7 +132,7 @@ func Test_Update(t *testing.T) {
 		t.Errorf("warn: %v", warn)
 	}
 
-	if ok := storage.Update("TEST", &gorns.UWarn{
+	if ok := storage.Update("TEST", &UWarn{
 		Name:    "UPDATED_TEST",
 		Code: 	 utils.Code("UPDATED_TEST"),
 		Content: "A updated test",
