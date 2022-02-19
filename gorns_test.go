@@ -52,7 +52,7 @@ func Test_New(t *testing.T) {
 func Test_Use(t *testing.T) {
 	expected := int16(8)
 
-	m := &Middleware{
+	m := &Manager{
 		Version: make(utils.VersionType, 3),
 		Warner: New(),
 	}
@@ -64,7 +64,7 @@ func Test_Use(t *testing.T) {
 	}
 }
 
-func Test_CreateMiddleware(t *testing.T) {
+func Test_CreateManager(t *testing.T) {
 	type testingMap map[int]interface{}
 	var expected testingMap = testingMap{
 		1: int16(8),
@@ -72,7 +72,7 @@ func Test_CreateMiddleware(t *testing.T) {
 		3: "TEST",
 	}
 
-	x := CreateMiddleware()
+	x := CreateManager()
 
 	x.Warner.Storage.Push(&UWarn{
 		Name: "TEST",

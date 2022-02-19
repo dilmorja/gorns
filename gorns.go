@@ -68,17 +68,17 @@ func New(opts ...*WarnerOpts) *Warner {
 	return this
 }
 
-type Middleware struct {
+type Manager struct {
 	Version utils.VersionType
 	Warner *Warner
 }
 
-func Use(m Middleware) *Warner {
+func Use(m Manager) *Warner {
 	return m.Warner
 }
 
-func CreateMiddleware() *Middleware {
-	var this *Middleware = &Middleware{
+func CreateManager() *Manager {
+	var this *Manager = &Manager{
 		Version: utils.Version(0,0,0),
 		Warner: New(),
 	}
