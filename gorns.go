@@ -1,6 +1,9 @@
 package gorns
 
-import "fmt"
+import(
+	"fmt"
+	"github.com/hexacry/gorns/utils"
+)
 
 // UWarn (Unwrapped Warn) is the key structure for creating a new warning.
 // It is recommended to use it as a pointer.
@@ -63,4 +66,13 @@ func New(opts ...*WarnerOpts) *Warner {
 	})
 
 	return this
+}
+
+type Middleware struct {
+	Version utils.VersionType
+	Warner *Warner
+}
+
+func Use(m Middleware) *Warner {
+	return m.Warner
 }
