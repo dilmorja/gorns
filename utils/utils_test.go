@@ -1,10 +1,6 @@
 package utils
 
-import (
-	"testing"
-
-	"github.com/hexacry/gorns"
-)
+import "testing"
 
 func Test_CharCodeAt(t *testing.T) {
 	expected := 84
@@ -19,13 +15,9 @@ func Test_CharCodeAt(t *testing.T) {
 func Test_Code(t *testing.T) {
 	expected := 84
 
-	uwarn := &gorns.UWarn{
-		Name:    "TEST",
-		Code:    Code("TEST"),
-		Content: "test",
-	}
+	c := Code("TEST")
 
-	got := int(uwarn.Code)
+	got := int(c)
 
 	if expected != got {
 		t.Errorf("Expected: %d, got: %d", expected, got)
