@@ -76,3 +76,11 @@ type Middleware struct {
 func Use(m Middleware) *Warner {
 	return m.Warner
 }
+
+func CreateMiddleware() *Middleware {
+	var this *Middleware = &Middleware{
+		Version: utils.Version(0,0,0),
+		Warner: New(),
+	}
+	return this
+}

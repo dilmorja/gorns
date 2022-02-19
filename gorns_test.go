@@ -63,3 +63,32 @@ func Test_Use(t *testing.T) {
 		t.Errorf("\nExpected: %d\nGot: %d\n", expected, got)
 	}
 }
+
+func Test_CreateMiddleware(t *testing.T) {
+	type testingMap map[int]interface{}
+	var expected testingMap = testingMap{
+		1: int16(8),
+		2: string(make(utils.VersionType, 3).ToByte()),
+		3: "TEST",
+	}
+
+	x := CreateMiddleware()
+
+	x.Warner.Storage.Push(&UWarn{
+		Name: "TEST",
+		Code: utils.Code("TEST"),
+		Content: "test",
+	})
+
+	got := testingMap{
+		1: x.Warner.Cfg.StorageLimit,
+		2: string(x.Version.ToByte()),
+		3: x.Warner.Storage.Get("TEST").Name,
+	}
+
+	for i := 0; i < 3; i++ {
+		if expected[i] != got[i] {
+			t.Errorf("\nExpected: %v\nGot: %v\n", expected[i], got[i])
+		}
+	}
+}
