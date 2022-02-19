@@ -1,6 +1,10 @@
 package utils
 
-import "strings"
+import(
+	"strings"
+	"fmt"
+	"strconv"
+)
 
 // Get the character code in the indicated position.
 func CharCodeAt(str string, at int) rune {
@@ -30,4 +34,35 @@ func Code(str string) uint16 {
 
 	return code
 
+}
+
+type VersionType []uint
+type VersionTypeByte []byte
+
+func (v VersionType) ToByte() VersionTypeByte {
+	var temp []string// = make([]string, len(v))
+	var this VersionTypeByte
+
+	for _, e := range v {
+		temp = append(temp, fmt.Sprintf("%d", e))
+	}
+
+	this = VersionTypeByte(strings.Join(temp, "."))
+
+	return this
+}
+
+func (v VersionTypeByte) ToVersion() VersionType {
+	var temp []string = strings.Split(string(v), ".")
+	var this VersionType = make(VersionType, len(temp))
+
+	for i, _ := range temp {
+		temp2, err := strconv.Atoi(string(temp[i]))
+		if err != nil {
+			temp2 = 0
+		}
+		this[i] = uint(temp2)
+	}
+
+	return this
 }
