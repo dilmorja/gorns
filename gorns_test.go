@@ -86,7 +86,7 @@ func Test_CreateManager(t *testing.T) {
 		3: x.Warner.Storage.Get("TEST").Name,
 	}
 
-	for i := 0; i < 3; i++ {
+	for i := 0; i < len(expected); i++ {
 		if expected[i] != got[i] {
 			t.Errorf("\nExpected: %v\nGot: %v\n", expected[i], got[i])
 		}
