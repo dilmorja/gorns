@@ -66,3 +66,13 @@ func (v VersionTypeByte) ToVersion() VersionType {
 
 	return this
 }
+
+func Version(v ...uint) VersionType {
+	var this VersionType
+
+	for _, e := range v {
+		this = append(this, e)
+	}
+
+	return this
+}

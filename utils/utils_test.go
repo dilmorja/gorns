@@ -52,3 +52,15 @@ func Test_ToVersion(t *testing.T) {
 		}
 	}
 }
+
+func Test_Version(t *testing.T) {
+	expected := make(VersionType, 3)
+
+	got := Version(0,0,0)
+
+	for i, e := range expected {
+		if e != got[i] {
+			t.Errorf("\nExpected: %d\nGot: %d\n", e, got[i])
+		}
+	}
+}
