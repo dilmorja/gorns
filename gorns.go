@@ -44,6 +44,22 @@ type Warner struct {
 	Cfg *WarnerOpts
 }
 
+func (w *Warner) Push(warn *UWarn) *UWarn {
+	return w.Storage.Push(warn)
+}
+
+func (w *Warner) Get(name string) *UWarn {
+	return w.Storage.Get(name)
+}
+
+func (w *Warner) Delete(name string) bool {
+	return w.Storage.Delete(name)
+}
+
+func (w *Warner) Update(name string, new *UWarn) bool {
+	return w.Storage.Update(name, new)
+}
+
 type WarnerOpts struct {
 	StorageLimit int16
 }
