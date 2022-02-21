@@ -92,3 +92,27 @@ func Test_CreateManager(t *testing.T) {
 		}
 	}
 }
+
+func Test_DW(t *testing.T) {
+	expected := "DW_WARN_NOT_EXIST"
+
+	if got := New().Get(DW_WNE).Name; expected != got {
+		t.Errorf("\nExpected: %s\nGot: %s\n", expected, got)
+	}
+}
+
+func Test_WarnerPush(t *testing.T) {
+	expected := utils.Code("TEST")
+	var got uint16
+
+	warner := New()
+	if warn := warner.Push("TEST", "test"); warn != nil {
+		got = warn.Code
+	}
+
+	got = warner.Get("TEST").Code
+
+	if expected != got {
+		t.Errorf("\nExpected: %d\nGot: %d\n", expected, got)
+	}
+}
