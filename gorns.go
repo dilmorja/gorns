@@ -44,6 +44,10 @@ type Warner struct {
 	Cfg *WarnerOpts
 }
 
+const(
+	DW_WNE = "DW_WARN_NOT_EXIST"
+)
+
 func (w *Warner) Push(name string, content string) *UWarn {
 	return w.Storage.Push(&UWarn{
 		Name: name,
@@ -68,7 +72,7 @@ func (w *Warner) Swarnf(name string) string {
 	if warn := w.Get(name); warn != nil {
 		return warn.Swarnf("")
 	}
-	return w.Get("DW_WARN_NOT_EXIST").Swarnf("")
+	return w.Get(DW_WNE).Swarnf("")
 }
 
 type WarnerOpts struct {
@@ -92,7 +96,7 @@ func New(opts ...*WarnerOpts) *Warner {
 		Limit: this.Cfg.StorageLimit,
 	})
 
-	this.Push("DW_WARN_NOT_EXIST", "The storage not contain this warn.")
+	this.Push(DW_WNE, "The storage not contain this warn.")
 
 	return this
 }
