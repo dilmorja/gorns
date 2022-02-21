@@ -30,9 +30,9 @@ type Warn interface {
 
 // Formats an element of type UWarn and returns a string.
 // Its use is perfect for terminals, web applications, etc.
-func (uw *UWarn) Swarnf(format ...string, v ...interface{}) string {
-	if len(v) > 0 && len(format) > 0 {
-		return fmt.Sprintf(format..., v...)
+func (uw *UWarn) Swarnf(format string, v ...interface{}) string {
+	if len(v) > 0 {
+		return fmt.Sprintf(format, v...)
 	}
 
 	return fmt.Sprintf("%s (%d): %s", uw.Name, uw.Code, uw.Content)
