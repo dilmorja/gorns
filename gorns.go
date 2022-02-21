@@ -44,8 +44,12 @@ type Warner struct {
 	Cfg *WarnerOpts
 }
 
-func (w *Warner) Push(warn *UWarn) *UWarn {
-	return w.Storage.Push(warn)
+func (w *Warner) Push(name string, content string) *UWarn {
+	return w.Storage.Push(&UWarn{
+		Name: name,
+		Code: utils.Code(name),
+		Content: content,
+	})
 }
 
 func (w *Warner) Get(name string) *UWarn {
