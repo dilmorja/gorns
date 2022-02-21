@@ -65,7 +65,11 @@ func (w *Warner) Update(name string, new *UWarn) bool {
 }
 
 func (w *Warner) Swarnf(name string) string {
-	return w.Get(name).Swarnf()
+	warn := w.Get(name)
+	if warn == nil {
+		return ""
+	}
+	return warn.Swarnf("")
 }
 
 type WarnerOpts struct {
