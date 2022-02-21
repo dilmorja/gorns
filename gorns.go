@@ -65,11 +65,10 @@ func (w *Warner) Update(name string, new *UWarn) bool {
 }
 
 func (w *Warner) Swarnf(name string) string {
-	warn := w.Get(name)
-	if warn == nil {
-		return ""
+	if warn := w.Get(name); warn != nil {
+		return warn.Swarnf("")
 	}
-	return warn.Swarnf("")
+	return w.Get("DW_WARN_NOT_EXIST").Swarnf("")
 }
 
 type WarnerOpts struct {
