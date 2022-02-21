@@ -93,6 +93,8 @@ func New(opts ...*WarnerOpts) *Warner {
 		Limit: this.Cfg.StorageLimit,
 	})
 
+	this.Push("DW_WARN_NOT_EXIST", "The storage not contain this warn.")
+
 	return this
 }
 
