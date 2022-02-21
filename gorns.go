@@ -64,6 +64,10 @@ func (w *Warner) Update(name string, new *UWarn) bool {
 	return w.Storage.Update(name, new)
 }
 
+func (w *Warner) Swarnf(name string) string {
+	return w.Get(name).Swarnf()
+}
+
 type WarnerOpts struct {
 	StorageLimit int16
 }
