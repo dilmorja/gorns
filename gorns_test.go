@@ -101,16 +101,16 @@ func Test_DW(t *testing.T) {
 	}
 }
 
-func Test_WarnerPush(t *testing.T) {
+func Test_WarnerPushAndGet(t *testing.T) {
 	expected := utils.Code("TEST")
 	var got uint16
 
 	warner := New()
-	if warn := warner.Push("TEST", "test"); warn != nil {
+	if warn := warner.Push("TEST", "test"); warn != nil { // PUSH TEST
 		got = warn.Code
 	}
 
-	got = warner.Get("TEST").Code
+	got = warner.Get("TEST").Code // GET TEST
 
 	if expected != got {
 		t.Errorf("\nExpected: %d\nGot: %d\n", expected, got)
