@@ -116,3 +116,21 @@ func Test_WarnerPushAndGet(t *testing.T) {
 		t.Errorf("\nExpected: %d\nGot: %d\n", expected, got)
 	}
 }
+
+func Test_WarnerUpdate(t *testing.T) {
+	expected := "TEST_UPDATED"
+
+	warner := New()
+	_ = warner.Push("TEST", "test")
+	_ = warner.Update("TEST", &UWarn{
+		Name: "TEST_UPDATED",
+		Code: utils.Code("TEST_UPDATED"),
+		Content: "test updated",
+	})
+
+	got := warner.Get("TEST").Name
+
+	if expected != got {
+		t.Errorf("\nExpected: %s\nGot: %s\n", expected, got)
+	}
+}
